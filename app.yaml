@@ -1,0 +1,39 @@
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /css
+  static_dir: css
+
+- url: /_ah/queue/deferred/.*
+  script: google.appengine.ext.deferred.application
+
+- url: /_ah/mail/.+
+  script: mail_handler.app
+  login: admin
+
+- url: .*
+  script: main.app
+
+inbound_services:
+- mail
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
+- name:  lxml
+  version: "latest"
+
+skip_files:
+- ^(.*/)?#.*#$
+- ^(.*/)?.*~$
+- ^(.*/)?.*\.py[co]$
+- ^(.*/)?.*\.sh$
+- ^(.*/)?.*/RCS/.*$
+- ^(.*/)?\..*$
+- ^venv$
+- ^tests$
+
+includes:
+- env_vars.yaml

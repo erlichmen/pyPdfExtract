@@ -1,0 +1,6 @@
+The only setup need is to create a env_vars.yaml file in the root of the project and add the following:
+
+env_variables:
+  SENDGRID_API_KEY: '<API KEY of send grid>'
+  SENDGRID_SENDER: '<email of the sender of the emails>'
+
